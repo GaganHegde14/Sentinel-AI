@@ -28,6 +28,9 @@ const Navbar = () => {
                     Admin
                   </Link>
                 )}
+                <Link to="/bookings" className="text-gray-600 hover:text-gray-900 font-medium text-sm">
+                  My Bookings
+                </Link>
                 <Link to="/profile" className="text-gray-600 hover:text-gray-900 font-medium text-sm">
                   {user.name}
                 </Link>

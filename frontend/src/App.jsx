@@ -8,6 +8,7 @@ import Register from './pages/Register';
 import EventDetails from './pages/EventDetails';
 import Profile from './pages/Profile';
 import AdminEvents from './pages/admin/AdminEvents';
+import MyBookings from './pages/MyBookings';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/events/:id" element={<EventDetails />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/admin/events" element={<AdminEvents />} />
+            <Route path="/bookings" element={<MyBookings />} />
           </Routes>
         </div>
       </Router>

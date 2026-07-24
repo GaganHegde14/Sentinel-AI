@@ -27,13 +27,24 @@ const EventDetails = () => {
     fetchEvent();
   }, [id]);
 
-  const handleBook = () => {
+  const [bookingLoading, setBookingLoading] = useState(false);
+
+  const handleBook = async () => {
     if (!user) {
       navigate('/login');
       return;
     }
-    // Phase 4: Booking logic goes here
-    alert('Ticket booking will be implemented in the next phase!');
+    
+    try {
+      setBookingLoading(true);
+      await api.post('/bookings', { eventId: id });
+      alert('Ticket booked successfully!');
+      navigate('/bookings');
+    } catch (err) {
+      alert(err.response?.data?.message || 'Failed to book ticket');
+    } finally {
+      setBookingLoading(false);
+    }
   };
 
   if (loading) {
@@ -94,13 +105,13 @@ const EventDetails = () => {
           <div className="border-t border-gray-100 pt-8 flex justify-end">
             <button
               onClick={handleBook}
-              disabled={event.available_tickets === 0}
+              disabled={event.available_tickets === 0 || bookingLoading}
               className={`px-8 py-3 rounded-lg text-lg font-semibold shadow-sm transition-all
-                ${event.available_tickets > 0 
+                ${event.available_tickets > 0 && !bookingLoading
                   ? 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow' 
-                  : 'bg-gray-200 text-gray-500 cursor-not-allowed'}`}
+                  : 'bg-gray-300 text-gray-600 cursor-not-allowed'}`}
             >
-              {event.available_tickets > 0 ? 'Book Ticket Now' : 'Sold Out'}
+              {bookingLoading ? 'Booking...' : event.available_tickets > 0 ? 'Book Ticket Now' : 'Sold Out'}
             </button>
           </div>
         </div>
