@@ -5,6 +5,9 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import EventDetails from './pages/EventDetails';
+import Profile from './pages/Profile';
+import AdminEvents from './pages/admin/AdminEvents';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/events/:id" element={<EventDetails />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/admin/events" element={<AdminEvents />} />
           </Routes>
         </div>
       </Router>

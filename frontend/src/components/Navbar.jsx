@@ -22,15 +22,22 @@ const Navbar = () => {
           </div>
           <div className="flex items-center space-x-4">
             {user ? (
-              <>
-                <span className="text-gray-700">Hello, {user.name}</span>
+              <div className="flex items-center space-x-4">
+                {user.role === 'admin' && (
+                  <Link to="/admin/events" className="text-gray-600 hover:text-gray-900 font-medium text-sm">
+                    Admin
+                  </Link>
+                )}
+                <Link to="/profile" className="text-gray-600 hover:text-gray-900 font-medium text-sm">
+                  {user.name}
+                </Link>
                 <button 
                   onClick={handleLogout}
                   className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-md transition-colors"
                 >
                   Logout
                 </button>
-              </>
+              </div>
             ) : (
               <>
                 <Link to="/login" className="text-gray-600 hover:text-gray-900 font-medium">
